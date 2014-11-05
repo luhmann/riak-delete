@@ -31,9 +31,9 @@ print 'Deleting Riak Keys: \n' + '\n'.join(imgs)
 # get and save all images
 for img in imgs:
     obj = riak_bucket.get(img)
-    print 'Image exists? ' + str(obj.exists)
+    print 'Image exists? %s' % str(obj.exists)
     if obj.exists is True:
-      print 'Now deleting key: ' + img
+      print 'Now deleting key: %s' % img
       obj.delete()
       obj = riak_bucket.get(img)
-      print 'Image exists? ' + str(obj.exists)
+      print 'Image exists? %s' % str(obj.exists)
