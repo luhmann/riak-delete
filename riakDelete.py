@@ -5,7 +5,7 @@ import json
 from riak import RiakClient, RiakNode
 
 parser = argparse.ArgumentParser(description='Takes a list of redis keys and deletes them')
-parser.add_argument('--host', dest='dest_riak', default='10.228.39.181', help='The host we push the riak data')
+parser.add_argument('--host', dest='dest_riak', default='10.228.39.181', help='The host we delete the riak data from')
 args = parser.parse_args()
 
 # map arguments
@@ -30,10 +30,10 @@ print 'Deleting Riak Keys: \n' + '\n'.join(imgs)
 
 # get and save all images
 for img in imgs:
-    print 'Now deleting key: ' + img
     obj = riak_bucket.get(img)
     print 'Image exists? ' + str(obj.exists)
     if obj.exists is True:
+      print 'Now deleting key: ' + img
       obj.delete()
       obj = riak_bucket.get(img)
       print 'Image exists? ' + str(obj.exists)
